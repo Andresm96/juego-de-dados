@@ -6,11 +6,14 @@ ventana = tk.Tk()
 resultado_jugadores = {"jugador1":[], "jugador2":[]}
 jugador_actual = "jugador1"
 
+#turno de los jugadores
+
+
 def enviar():
     nombre = entrada.get()
     label_saludo.config(text=f"Hola, {nombre}!")
-    
 
+    
 
 def lanzardados():
     dado1 = random.randint(1, 6)
@@ -20,11 +23,14 @@ def lanzardados():
     label_lanzardados.config(text=f"resultado de los dados: {dado1}, {dado2}, {dado3}")
     
     resultado_jugadores[jugador_actual].append((dado1, dado2, dado3))
+    jugador_actual = "jugador2" if jugador_actual == "jugador1" else "jugador1"
     
     label_resultado.config(text=f"resultados de {jugador_actual}:\n" + "\n"
     .join(f"Tirada {i}: {d1}, {d2}, {d3}"
          for i, (d1, d2, d3) in enumerate(resultado_jugadores[jugador_actual],1)))
-        
+    #turno de los jugadores
+    
+          
 
 
 #visual
