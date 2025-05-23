@@ -8,6 +8,15 @@ jugador_actual = "jugador1"
 
 #turno de los jugadores
 
+def cambiar_jugador():
+    global jugador_actual
+    if jugador_actual == "jugador1":
+        jugador_actual = "jugador2"
+    else:
+        jugador_actual = "jugador1"
+    label_resultado.config(text=f"resultados de {jugador_actual}:\n" + "\n"
+    .join(f"Tirada {i}: {d1}, {d2}, {d3}"
+         for i, (d1, d2, d3) in enumerate(resultado_jugadores[jugador_actual],1)))    
 
 def enviar():
     nombre = entrada.get()
