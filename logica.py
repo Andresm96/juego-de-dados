@@ -4,9 +4,31 @@ ventana = tk.Tk()
 
 
 resultado_jugadores = {"jugador1":[], "jugador2":[]}
-jugador_actual = "jugador1"
 
-#turno de los jugadores
+def enviar():
+    nombre = entrada.get()
+    label_saludo.config(text=f"Hola, {nombre}!")
+
+    
+
+def lanzardados():
+    
+    dado1 = random.randint(1, 6)
+    dado2 = random.randint(1, 6)
+    dado3 = random.randint(1, 6)
+    
+    label_lanzardados.config(text=f"resultado de los dados: {dado1}, {dado2}, {dado3}")
+    
+    resultado_jugadores[jugador_actual].append((dado1, dado2, dado3))
+    jugador_actual = "jugador2" if  jugador_actual == "jugador1" else "jugador1"
+    
+    label_resultado.config(text=f"resultados de {jugador_actual}:\n" + "\n"
+    .join(f"Tirada {i}: {d1}, {d2}, {d3}"
+         for i, (d1, d2, d3) in enumerate(resultado_jugadores[jugador_actual],1)))
+    
+    #turno de los jugadores
+    
+jugador_actual = "jugador1", "jugador2" 
 
 def cambiar_jugador():
     global jugador_actual
@@ -17,30 +39,10 @@ def cambiar_jugador():
     label_resultado.config(text=f"resultados de {jugador_actual}:\n" + "\n"
     .join(f"Tirada {i}: {d1}, {d2}, {d3}"
          for i, (d1, d2, d3) in enumerate(resultado_jugadores[jugador_actual],1)))    
+         
 
-def enviar():
-    nombre = entrada.get()
-    label_saludo.config(text=f"Hola, {nombre}!")
-
-    
-
-def lanzardados():
-    dado1 = random.randint(1, 6)
-    dado2 = random.randint(1, 6)
-    dado3 = random.randint(1, 6)
-    
-    label_lanzardados.config(text=f"resultado de los dados: {dado1}, {dado2}, {dado3}")
-    
-    resultado_jugadores[jugador_actual].append((dado1, dado2, dado3))
-    jugador_actual = "jugador2" if jugador_actual == "jugador1" else "jugador1"
-    
-    label_resultado.config(text=f"resultados de {jugador_actual}:\n" + "\n"
-    .join(f"Tirada {i}: {d1}, {d2}, {d3}"
-         for i, (d1, d2, d3) in enumerate(resultado_jugadores[jugador_actual],1)))
-    #turno de los jugadores
-    
-          
-
+#agregar un label para mostrar el turno del jugador actual 
+# agregarlo en el boton de tirar dados 
 
 #visual
 
@@ -52,6 +54,10 @@ ventana.geometry("1000x700")
 #Label para el título
 
 tk.Label(ventana, text="Ingresa nombre del jugardor 1:").pack()
+entrada = tk.Entry(ventana)
+entrada.pack()
+
+tk.Label(ventana, text="Ingresa nombre del jugardor 2:").pack()
 entrada = tk.Entry(ventana)
 entrada.pack()
 
