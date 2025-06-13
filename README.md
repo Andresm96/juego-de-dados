@@ -21,3 +21,4 @@ Diagrama: https://miro.com/app/board/uXjVIqFlI_k=/?share_link_id=59048818519
 
 Desarrollado por Andrés Felipe Murillo
 Proyecto académico - 2025
+PREICA2501B020077 - grupo 15
